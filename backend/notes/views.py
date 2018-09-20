@@ -20,15 +20,15 @@ from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
     
-
+# для удобстве введения данных через консоль командой
+# POST "http://<URL>/api/notes/" <ARGS> 
 class NoteViewSet(viewsets.ModelViewSet):    
-    #queryset = Note.objects.filter(read=True).order_by('-created_at')
-    queryset = Note.objects.all()#.order_by('-created_at')
+    queryset = Note.objects.all().order_by('-id')
     serializer_class = NoteSerializer
     
-    
-class NoteNewSet(generics.ListAPIView):
-    #queryset = Note.objects.filter(read=False).order_by('-created_at')
+
+#для запроса всех сообщений с id более указанного     
+class NoteListSet(generics.ListAPIView):
     serializer_class = NoteSerializer
     
     def get_queryset(self):
@@ -39,8 +39,10 @@ class NoteNewSet(generics.ListAPIView):
         return queryset
     
     
+#для помечания сообщения прочитанным
 class NoteReadSet(generics.UpdateAPIView):
     serializer_class = NoteSerializer
+    
     def post(self, request, format=None):
         #queryset = Note.objects.filter(read=False).order_by('-created_at')
         id = self.request.query_params.get('id', None)

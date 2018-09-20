@@ -4,8 +4,9 @@
       .card-header
         button.btn.btn-success.pull-right(@click="readNote(note)") {{"Прочитано"}}
         .card-title {{note.created_at}}
-        .card-subtitle
-      .card-body {{note.text}}
+            .card-subtitle
+      p
+        .card-body {{note.text}}
 </template>
 
 <script>
@@ -18,10 +19,11 @@ export default {
     readNote (note) {
       // Вызываем действие `readNote` из нашего хранилища, которое
       // попытается удалить заметку из нашех базы данных, отправив запрос к API
-      console.log('FFFFFFFFFFFFFFF')
       this.$store.dispatch('readNote', note)
     },
     update () {
+      // функция обновления, вызывает проверку на добавление новых сообщений
+      // каждые 10сек
       console.log('in update')
       var v = this
       // this.lastId = 10
@@ -32,7 +34,8 @@ export default {
     }
   },
   mounted () {
-    console.log('in mounted')
+    // Когда все прогрузилось, запускаем update, которая впоследствии будет
+    // вызывать обновление каждые 10сек
     this.update()
   },
   beforeMount () {

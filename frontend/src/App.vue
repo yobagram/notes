@@ -1,21 +1,3 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
-  </div>
-</template>
-
-<script>
-import HelloWorld from './components/HelloWorld'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -27,21 +9,13 @@ export default {
 }
 </style>
 
-//var range5 = [1,2,3,4,5]
-
 <template lang="pug">
   #app
-    //var range5 = [1,2,3,4,5]
-    //div(v-for="i in range5")
-    //    h2 {{i}}
-              //h2 List of notes
     section.container.grid-960
       .columns
         .column.col-2
         .column.col-8.col-md-12
           header.text-center
-            //h2 Create note
-          //create-note
           header.text-center
             h2 List of notes
             note-list
@@ -49,14 +23,12 @@ export default {
 </template>
 
 <script>
-//import CreateNote from './components/CreateNote'
 import NoteList from './components/NoteList'
 
 export default {
   name: 'app',
   components: {
-    //'create-note': CreateNote,
-    'note-list': NoteList,
+    'note-list': NoteList
   }
 }
 </script>

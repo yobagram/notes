@@ -25,14 +25,7 @@ import notes.views
 
 urlpatterns = [
     path(r'api/', include('notes.urls')),
-    #path(r'^get_messages', FilterView.as_view(filterset_class=GtIdFilter,)),
-    #path(r'get_messages', FilterView.as_view(filterset_class=GtIdFilter,
-    #path(r'api/get_messages/', FilterView.as_view(filterset_class=GtIdFilter,
-    #                                 template_name='note_filter.html')),
-    #path(r'api/mark_read)', notes.views.NoteReadView.as_view()),
-    #path(r'api/mark_read', notes.views.NoteReadSet.as_view({'get': 'list'})),
-    #path(r'get_messages', notes.views.NoteNewSet.as_view()),
-    path(r'api/get_messages', notes.views.NoteNewSet.as_view()),
+    path(r'api/get_messages', notes.views.NoteListSet.as_view()),
     path(r'api/mark_read', notes.views.NoteReadSet.as_view()),
     path(r'admin/', admin.site.urls),
 ]

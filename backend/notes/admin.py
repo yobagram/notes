@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.contrib import admin
 from .models import Note
 
+#добавляем класс администрирования, чтобы иметь доступ к админке Django
 class AuthorAdmin(admin.ModelAdmin):
     pass
 

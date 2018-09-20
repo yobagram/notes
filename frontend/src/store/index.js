@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { Note } from '../api/notes'
 import {
-  ADD_NOTE,
   READ_NOTE,
   SET_NOTES,
   ADD_NOTES
@@ -13,7 +12,7 @@ Vue.use(Vuex)
 // Состояние
 const state = {
   notes: [], // список заметок
-  lastId: 0
+  lastId: 0 // id последнего элемента
 }
 
 // Геттеры
@@ -24,10 +23,6 @@ const getters = {
 
 // Мутации
 const mutations = {
-  // Добавляем заметку в список
-  [ADD_NOTE] (state, note) {
-    state.notes = [note, ...state.notes]
-  },
   // Убираем заметку из списка
   [READ_NOTE] (state, { id }) {
     state.notes = state.notes.filter(note => {
@@ -50,11 +45,6 @@ const mutations = {
 
 // Действия
 const actions = {
-  createNote ({ commit }, noteData) {
-    Note.create(noteData).then(note => {
-      commit(ADD_NOTE, note)
-    })
-  },
   readNote ({ commit }, note) {
     Note.read(note).then(response => {
       commit(READ_NOTE, note)
@@ -64,10 +54,7 @@ const actions = {
     state.lastId = 0
     Note.list(state.lastId).then(notes => {
       if (notes.length !== 0) {
-        console.log(notes)
-        console.log('notes.length !== 0')
         state.lastId = notes[0]['id']
-        console.log(state.lastId)
         commit(SET_NOTES, { notes })
       }
     })
